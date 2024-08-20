@@ -1,0 +1,10 @@
+name: clustur_pub
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - r
+dependencies:
+  - snakemake=8.17.0
+  - quarto=1.5.55
+  - latexdiff=1.3.3

@@ -1,0 +1,388 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1.0in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage[left]{lineno}
+\linenumbers
+\modulolinenumbers
+\usepackage{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+
+\begin{document}
+
+
+\setstretch{1.75}
+\raggedright
+
+\section{clustur: An R package for clustering features using sparse
+distances
+matrices}\label{clustur-an-r-package-for-clustering-features-using-sparse-distances-matrices}
+
+\vspace{20mm}
+
+\textbf{Running title:} clustur
+
+\vspace{20mm}
+
+Gregory Johnson Jr.\text, Sarah L. Westcott, Patrick D.
+Schloss\textsuperscript{\textdagger}
+
+\vspace{25mm}
+
+\textdagger To whom correspondence should be addressed\\
+\href{mailto:pschloss@umich.edu}{pschloss@umich.edu}
+
+\vspace{10mm}
+
+Department of Microbiology \& Immunology\\
+University of Michigan\\
+Ann Arbor, MI 48109
+
+\vspace{20mm}
+
+\textbf{Software Announcement}
+
+\newpage
+
+\subsection{Abstract (needs to be under 50
+words)}\label{abstract-needs-to-be-under-50-words}
+
+Veniam commodo eu ullamco in cupidatat. Labore exercitation incididunt
+occaecat ut ullamco ad velit laboris cupidatat velit reprehenderit
+excepteur commodo. Est in consequat in sit non cillum laborum aliqua do
+pariatur deserunt. Minim commodo commodo sint Lorem elit et adipisicing
+commodo aute officia officia. Dolore aliqua culpa id minim reprehenderit
+duis magna voluptate. Id laborum deserunt dolor dolore elit. Et est
+reprehenderit aute velit occaecat ipsum labore.
+
+\newpage
+
+\subsection{Announcement (needs to be around 500 words, currently
+595)}\label{announcement-needs-to-be-around-500-words-currently-595}
+
+\begin{itemize}
+\tightlist
+\item
+  Problem definition
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Taxonomic classification of 16S rRNA gene sequences is not great
+  \item
+    Methods have been developed for de novo clustering of sequences
+  \item
+    Heuristic methods that have been developed
+  \item
+    Methods have been developed for reference-based clustering of
+    sequences
+  \item
+    These are available within mothur
+  \end{itemize}
+\item
+  What does clustur do to solve problem
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Package bundles together mothur's functionality
+  \item
+    Hopes to help spurn further innovation in clustering by making
+    functions accessible via R
+  \item
+    Will make functionality available to other types of analysis beyond
+    16S rRNA gene sequences
+  \end{itemize}
+\item
+  Design of clustur
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Makes use of Rcpp
+  \end{itemize}
+\item
+  How to install and use clustur
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Users can install via CRAN or through the devtools package's
+    install\_github function
+  \item
+    Users provide different inputs depending on desired function, output
+    is a long shared file with columns indicating the sample, OTU, and
+    count
+  \end{itemize}
+\end{itemize}
+
+(1--7)
+
+\subsection{Data availability}\label{data-availability}
+
+clustur is available through CRAN and developmental versions are
+available through the project's GitHub website
+(https://github.com/schlosslab/clustur). The package is available under
+the MIT open source license.
+
+\subsection{Acknowledgements}\label{acknowledgements}
+
+This project was supported, in part, by a grant from the US National
+Institutes of Health (U01CA264071) to PDS.
+
+\newpage
+
+\subsection{References}\label{references}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{0}{1}
+\bibitem[\citeproctext]{ref-Schloss2005}
+\CSLLeftMargin{1. }%
+\CSLRightInline{\textbf{Schloss PD}, \textbf{Handelsman J}. 2005.
+Introducing DOTUR, a computer program for defining operational taxonomic
+units and estimating species richness. Applied and Environmental
+Microbiology \textbf{71}:1501--1506.
+doi:\href{https://doi.org/10.1128/aem.71.3.1501-1506.2005}{10.1128/aem.71.3.1501-1506.2005}.}
+
+\bibitem[\citeproctext]{ref-Schloss2009}
+\CSLLeftMargin{2. }%
+\CSLRightInline{\textbf{Schloss PD}, \textbf{Westcott SL},
+\textbf{Ryabin T}, \textbf{Hall JR}, \textbf{Hartmann M},
+\textbf{Hollister EB}, \textbf{Lesniewski RA}, \textbf{Oakley BB},
+\textbf{Parks DH}, \textbf{Robinson CJ}, \textbf{Sahl JW}, \textbf{Stres
+B}, \textbf{Thallinger GG}, \textbf{Van Horn DJ}, \textbf{Weber CF}.
+2009. Introducing mothur: Open-source, platform-independent,
+community-supported software for describing and comparing microbial
+communities. Applied and Environmental Microbiology
+\textbf{75}:7537--7541.
+doi:\href{https://doi.org/10.1128/aem.01541-09}{10.1128/aem.01541-09}.}
+
+\bibitem[\citeproctext]{ref-Schloss2011}
+\CSLLeftMargin{3. }%
+\CSLRightInline{\textbf{Schloss PD}, \textbf{Westcott SL}. 2011.
+Assessing and improving methods used in operational taxonomic unit-based
+approaches for 16S rRNA gene sequence analysis. Applied and
+Environmental Microbiology \textbf{77}:3219--3226.
+doi:\href{https://doi.org/10.1128/aem.02810-10}{10.1128/aem.02810-10}.}
+
+\bibitem[\citeproctext]{ref-Schloss2016}
+\CSLLeftMargin{4. }%
+\CSLRightInline{\textbf{Schloss PD}. 2016. Application of a
+database-independent approach to assess the quality of operational
+taxonomic unit picking methods. mSystems \textbf{1}.
+doi:\href{https://doi.org/10.1128/msystems.00027-16}{10.1128/msystems.00027-16}.}
+
+\bibitem[\citeproctext]{ref-Sovacool2022}
+\CSLLeftMargin{5. }%
+\CSLRightInline{\textbf{Sovacool KL}, \textbf{Westcott SL},
+\textbf{Mumphrey MB}, \textbf{Dotson GA}, \textbf{Schloss PD}. 2022.
+OptiFit: An improved method for fitting amplicon sequences to existing
+OTUs. mSphere \textbf{7}.
+doi:\href{https://doi.org/10.1128/msphere.00916-21}{10.1128/msphere.00916-21}.}
+
+\bibitem[\citeproctext]{ref-Westcott2015}
+\CSLLeftMargin{6. }%
+\CSLRightInline{\textbf{Westcott SL}, \textbf{Schloss PD}. 2015. De novo
+clustering methods outperform reference-based methods for assigning 16S
+rRNA gene sequences to operational taxonomic units. PeerJ
+\textbf{3}:e1487.
+doi:\href{https://doi.org/10.7717/peerj.1487}{10.7717/peerj.1487}.}
+
+\bibitem[\citeproctext]{ref-Westcott2017}
+\CSLLeftMargin{7. }%
+\CSLRightInline{\textbf{Westcott SL}, \textbf{Schloss PD}. 2017.
+OptiClust, an improved method for assigning amplicon-based sequence data
+to operational taxonomic units. mSphere \textbf{2}.
+doi:\href{https://doi.org/10.1128/mspheredirect.00073-17}{10.1128/mspheredirect.00073-17}.}
+
+\end{CSLReferences}
+
+
+
+
+\end{document}
