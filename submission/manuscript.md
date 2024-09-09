@@ -26,7 +26,7 @@ Ann Arbor, MI 48109
 
 **Software Announcement**
 
-## Abstract (needs to be under 50 words; currently 48)
+## Abstract
 
 The clustur R package implements the *de novo* clustering algorithms
 found in the mothur software package for assigning 16S rRNA gene
@@ -35,32 +35,24 @@ accessible through the R ecosystem will foster their further
 development, broader application, and integration within other R
 packages.
 
-## Announcement (needs to be ~500 words, currently 608)
+## Announcement
 
 Taxonomic classification of 16S rRNA gene sequences has been a
-persistent problem in microbial ecology studies because reference
+persistent challenge in microbial ecology studies because reference
 databases are incomplete (1). As an alternative, operational taxonomic
 units (OTUs) have been widely used for describing and comparing
-microbial communities. Although the biological interpretation is
+microbial communities. Although their biological interpretation is
 controversial, OTUs are typically defined as a group of sequences that
 are more than 97% similar or less than 3% dissimilar to each other (2).
 Methods for applying that definition has resulted in a sizable
 literature. Three general approaches have emerged for assigning
-sequences to OTUs. First, sequences can be clustered based on their
-similarity to each other. This approach has often been called “*de novo*
-clustering”. Second, sequences can be clustered based on their
-similarity to reference sequences. This approach has often been called
-“closed reference clustering” or “phylotyping”. Finally, a hybrid
-approach applies *de novo* clustering to sequences that are not
-sufficiently close to reference sequences when using closed reference
-clustering. This approach has been called “open reference clustering”.
-We have described and compared these methods in great detail elsewhere
-(3–6). These methods are available through popular packages including
-mothur and QIIME (7, 8).
+sequences to OTUs: *de novo* clustering, closed reference clustering or
+phylotyping, and open reference clustering (3–9). These methods are
+available through popular packages including mothur and QIIME2 (10, 11).
 
 The clustur R package implements the *de novo* clustering algorithms
 implemented in mothur. The package name references its focus on
-clustering and the names of its predecessors DOTUR and mothur (7, 9).
+clustering and the names of its predecessors DOTUR and mothur (10, 12).
 This package was developed to help address two issues. First, users
 would be able to more easily integrate the type of analysis that mothur
 specializes in with popular analysis and visualization packages within
@@ -70,15 +62,15 @@ encourage further development of the algorithms behind these functions
 and analyses based on the output of the functions. The clustur package
 implements hierarchical clustering algorithms including the furthest,
 nearest, unweighted (i.e. average), and weighted neighbor clustering
-algorithms and the OptiFit algorithm. Although functions implementing
-the hierarchical algorithms already exist within R, their
+algorithms and the OptiClust algorithm. Functions implementing the
+hierarchical algorithms already exist within R; however, their
 implementations within clustur make use of a sparse input distance
 matrix and output data for a single distance threshold. The benefits of
 censoring distances larger than the threshold and only outputting data
 for a single threshold include a smaller memory requirement and faster
-execution times. clustur makes use of the Rcpp R package to implement
-C++ code originally written for the mothur software package to preserve
-the speed of the functions.
+execution times (4). clustur makes use of the Rcpp R package to
+implement C++ code originally written for the mothur software package to
+preserve the speed of the functions.
 
 Users can install the clustur package via CRAN or through the devtools
 package’s install_github function. The primary input to clustur’s
@@ -88,13 +80,14 @@ indicating the identifiers of the sequences being compared and a column
 with the distance between those sequences; data for comparisons with a
 distance larger than the desired threshold (e.g., 0.03) does not need to
 be included. The count file is a data.table package object indicating
-the number of times a sequence is found in each sample. The functions
-output a data.table object with two columns indicating the sample and
-OTU identifiers and a column indicating the number of times each OTU is
-found in each sample. Detailed vignettes are available within the
-package to teach users how to install the package, use its functions,
-and perform downstream analyses including analysis within the vegan and
-ggplot2 R packages.
+the number of times a sequence is found in each sample. The cluster
+functions output two data.table objects. The first one has two columns
+indicating the sequences and OTU identifiers. The second displays the
+abundance of each sequence in each OTU. This has identical functionality
+to the cluster and make.shared functions from mothur. Detailed vignettes
+are available within the package to teach users how to install the
+package, use its functions, and perform downstream analyses including
+analysis within the vegan and ggplot2 R packages.
 
 ## Data availability
 
@@ -136,9 +129,24 @@ doi:[10.1099/00207713-44-4-846](https://doi.org/10.1099/00207713-44-4-846).</spa
 
 </div>
 
-<div id="ref-Schloss2011" class="csl-entry">
+<div id="ref-NavasMolina2013" class="csl-entry">
 
 <span class="csl-left-margin">3.
+</span><span class="csl-right-inline">**Navas-Molina JA**,
+**Peralta-Sánchez JM**, **González A**, **McMurdie PJ**, **Vázquez-Baeza
+Y**, **Xu Z**, **Ursell LK**, **Lauber C**, **Zhou H**, **Song SJ**,
+**Huntley J**, **Ackermann GL**, **Berg-Lyons D**, **Holmes S**,
+**Caporaso JG**, **Knight R**. 2013. [Advancing our understanding of the
+human microbiome using
+QIIME](https://doi.org/10.1016/b978-0-12-407863-5.00019-8), p. 371–444.
+*In* Microbial metagenomics, metatranscriptomics, and metaproteomics.
+Elsevier.</span>
+
+</div>
+
+<div id="ref-Schloss2011" class="csl-entry">
+
+<span class="csl-left-margin">4.
 </span><span class="csl-right-inline">**Schloss PD**, **Westcott SL**.
 2011. Assessing and improving methods used in operational taxonomic
 unit-based approaches for 16S rRNA gene sequence analysis. Applied and
@@ -149,7 +157,7 @@ doi:[10.1128/aem.02810-10](https://doi.org/10.1128/aem.02810-10).</span>
 
 <div id="ref-Schloss2016" class="csl-entry">
 
-<span class="csl-left-margin">4.
+<span class="csl-left-margin">5.
 </span><span class="csl-right-inline">**Schloss PD**. 2016. Application
 of a database-independent approach to assess the quality of operational
 taxonomic unit picking methods. mSystems **1**.
@@ -159,7 +167,7 @@ doi:[10.1128/msystems.00027-16](https://doi.org/10.1128/msystems.00027-16).</spa
 
 <div id="ref-Westcott2015" class="csl-entry">
 
-<span class="csl-left-margin">5.
+<span class="csl-left-margin">6.
 </span><span class="csl-right-inline">**Westcott SL**, **Schloss PD**.
 2015. De novo clustering methods outperform reference-based methods for
 assigning 16S rRNA gene sequences to operational taxonomic units. PeerJ
@@ -170,7 +178,7 @@ doi:[10.7717/peerj.1487](https://doi.org/10.7717/peerj.1487).</span>
 
 <div id="ref-Westcott2017" class="csl-entry">
 
-<span class="csl-left-margin">6.
+<span class="csl-left-margin">7.
 </span><span class="csl-right-inline">**Westcott SL**, **Schloss PD**.
 2017. OptiClust, an improved method for assigning amplicon-based
 sequence data to operational taxonomic units. mSphere **2**.
@@ -178,9 +186,32 @@ doi:[10.1128/mspheredirect.00073-17](https://doi.org/10.1128/mspheredirect.00073
 
 </div>
 
+<div id="ref-Kopylova2016" class="csl-entry">
+
+<span class="csl-left-margin">8.
+</span><span class="csl-right-inline">**Kopylova E**, **Navas-Molina
+JA**, **Mercier C**, **Xu ZZ**, **Mahé F**, **He Y**, **Zhou H-W**,
+**Rognes T**, **Caporaso JG**, **Knight R**. 2016. Open-source sequence
+clustering methods improve the state of the art. mSystems **1**.
+doi:[10.1128/msystems.00003-15](https://doi.org/10.1128/msystems.00003-15).</span>
+
+</div>
+
+<div id="ref-He2015" class="csl-entry">
+
+<span class="csl-left-margin">9.
+</span><span class="csl-right-inline">**He Y**, **Caporaso JG**, **Jiang
+X-T**, **Sheng H-F**, **Huse SM**, **Rideout JR**, **Edgar RC**,
+**Kopylova E**, **Walters WA**, **Knight R**, **Zhou H-W**. 2015.
+Stability of operational taxonomic units: An important but neglected
+property for analyzing microbial diversity. Microbiome **3**.
+doi:[10.1186/s40168-015-0081-x](https://doi.org/10.1186/s40168-015-0081-x).</span>
+
+</div>
+
 <div id="ref-Schloss2009" class="csl-entry">
 
-<span class="csl-left-margin">7.
+<span class="csl-left-margin">10.
 </span><span class="csl-right-inline">**Schloss PD**, **Westcott SL**,
 **Ryabin T**, **Hall JR**, **Hartmann M**, **Hollister EB**,
 **Lesniewski RA**, **Oakley BB**, **Parks DH**, **Robinson CJ**, **Sahl
@@ -194,7 +225,7 @@ doi:[10.1128/aem.01541-09](https://doi.org/10.1128/aem.01541-09).</span>
 
 <div id="ref-Bolyen2019" class="csl-entry">
 
-<span class="csl-left-margin">8.
+<span class="csl-left-margin">11.
 </span><span class="csl-right-inline">**Bolyen E**, **Rideout JR**,
 **Dillon MR**, **Bokulich NA**, **Abnet CC**, **Al-Ghalith GA**,
 **Alexander H**, **Alm EJ**, **Arumugam M**, **Asnicar F**, **Bai Y**,
@@ -229,7 +260,7 @@ doi:[10.1038/s41587-019-0209-9](https://doi.org/10.1038/s41587-019-0209-9).</spa
 
 <div id="ref-Schloss2005" class="csl-entry">
 
-<span class="csl-left-margin">9.
+<span class="csl-left-margin">12.
 </span><span class="csl-right-inline">**Schloss PD**, **Handelsman J**.
 2005. Introducing DOTUR, a computer program for defining operational
 taxonomic units and estimating species richness. Applied and
