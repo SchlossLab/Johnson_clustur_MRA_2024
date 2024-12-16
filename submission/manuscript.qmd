@@ -76,7 +76,7 @@ The clustur R package implements the *de novo* clustering algorithms implemented
 Users can install the clustur package via CRAN or through the devtools package’s install_github function. The primary input to clustur’s functions is a sparse distance matrix and a count file. The sparse distance matrix is a data.table package object with two columns indicating the identifiers of the sequences being compared and a column with the distance between those sequences; data for comparisons with a distance larger than the desired threshold (e.g., 0.03) does not need to be included. The count file is a data.table package object indicating the number of times a sequence is found in each sample. The cluster functions output two data.table  objects.  The first one has two columns indicating the sequences and OTU identifiers. The second displays the abundance of each sequence in each OTU. This has identical functionality to the cluster and make.shared functions from mothur. Detailed vignettes are available within the package to teach users how to install the package, use its functions, and perform downstream analyses including analysis within the vegan and ggplot2 R packages.
 
 ## Data availability
-clustur is available through CRAN and developmental versions are available through the project's GitHub website (https://github.com/schlosslab/clustur). The package is available under the MIT open source license.
+clustur is available through CRAN and developmental versions are available through the project's GitHub website (https://github.com/schlosslab/clustur). The package is available under the GNU General Public License (v3.0).
 
 
 ## Acknowledgements
